@@ -1,0 +1,1 @@
+# SPbSTU_Django_Shop
