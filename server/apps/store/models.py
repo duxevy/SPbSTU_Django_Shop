@@ -7,7 +7,8 @@ class Category(models.Model):
     ordering = models.PositiveIntegerField(default=0)
 
     class Meta:
-        verbose_name_plural = 'Categories'
+        verbose_name_plural = 'Категории'
+        verbose_name = 'Категория'
         ordering = ('ordering',)
 
     def __str__(self):
@@ -20,10 +21,12 @@ class Product(models.Model):
     slug = models.SlugField(max_length=255)
     description = models.TextField(blank=True, null=True)
     price = models.PositiveIntegerField()
-    is_featured = models.BooleanField(default=False)
+    is_featured = models.BooleanField(default=True)
     date_added = models.DateTimeField(auto_now_add=True)
 
     class Meta:
+        verbose_name_plural = 'Товары'
+        verbose_name = 'Товар'
         ordering = ('-date_added',)
 
     def __str__(self):

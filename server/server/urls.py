@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from apps.cart.views import cart
+from apps.cart.views import cart, cart_detail, cart_add, cart_remove
 from apps.core.views import frontpage, contact, about
 from apps.store.views import product_detail, category_detail
 
@@ -25,6 +25,9 @@ urlpatterns = [
     path('contact/', contact, name='contact'),
     path('about/', about, name='about'),
     path('cart/', cart, name='cart'),
+    path('cart_detail/', cart_detail, name='cart_detail'),
+    path('cart_add/', cart_add, name='cart_add'),
+    path('cart_remove/', cart_remove, name='cart_remove'),
     path('<slug:category_slug>/<slug:slug>/', product_detail, name='product_detail'),
     path('<slug:slug>/', category_detail, name='category_detail'),
 ]
