@@ -1,18 +1,20 @@
-from decimal import Decimal
-from django.conf import settings
+from django.core.validators import RegexValidator
 from django.db import models
 
 from store.models import Product
 
 
 class Order(models.Model):
-    full_name = models.CharField(max_length=50)
-    email = models.CharField(max_length=100)
-    address1 = models.CharField(max_length=250)
+    postCodeRegex = RegexValidator(regex=r'^[0-9]{6}')
+    phoneNumberRegex = RegexValidator(regex=r"^\+?1?\d{8,15}$")
+    emailRegex = RegexValidator(regex=r"(^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$)")
+    full_name = models.CharField(max_length=100, blank=False)
+    email = models.EmailField(blank=False, validators=[emailRegex])
+    address1 = models.CharField(max_length=250, blank=False)
     address2 = models.CharField(max_length=250)
-    city = models.CharField(max_length=100)
-    phone = models.CharField(max_length=100)
-    post_code = models.CharField(max_length=20)
+    city = models.CharField(max_length=20, blank=False)
+    phone = models.CharField(validators=[phoneNumberRegex], max_length=16, unique=True, blank=False)
+    post_code = models.PositiveIntegerField(blank=False, validators=[postCodeRegex])
     created = models.DateTimeField(auto_now_add=True)
 
     class Meta:

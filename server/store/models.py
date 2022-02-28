@@ -13,8 +13,8 @@ class Category(models.Model):
     slug = models.SlugField(max_length=255, unique=True)
 
     class Meta:
-        verbose_name = 'Категория',
-        verbose_name_plural = 'Катигории'
+        verbose_name = 'Категория'
+        verbose_name_plural = 'Категории'
 
     def get_absolute_url(self):
         return reverse('category_list', args=[self.slug])
@@ -36,7 +36,8 @@ class Product(models.Model):
     products = ProductManager()
 
     class Meta:
-        verbose_name_plural = 'Products'
+        verbose_name_plural = 'Товары'
+        verbose_name = 'Товар'
         ordering = ('-created', '-in_stock',)
 
     def get_absolute_url(self):
