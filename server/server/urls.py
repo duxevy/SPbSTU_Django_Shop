@@ -13,21 +13,23 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+from django.conf import settings
+from django.conf.urls.static import static
 from django.contrib import admin
-from django.urls import path
-from apps.cart.views import cart, cart_detail, cart_add, cart_remove
-from apps.core.views import frontpage, contact, about
-from apps.store.views import product_detail, category_detail
+from django.urls import include, path
+
+from store import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', frontpage, name='frontpage'),
-    path('contact/', contact, name='contact'),
-    path('about/', about, name='about'),
-    path('cart/', cart, name='cart'),
-    path('cart_detail/', cart_detail, name='cart_detail'),
-    path('cart_add/', cart_add, name='cart_add'),
-    path('cart_remove/', cart_remove, name='cart_remove'),
-    path('<slug:category_slug>/<slug:slug>/', product_detail, name='product_detail'),
-    path('<slug:slug>/', category_detail, name='category_detail'),
+    path('', views.product_all, name='product_all'),
+    path('basket/', include('basket.urls', namespace='basket')),
+    path('orders/', include('orders.urls', namespace='orders')),
+    path('about/', views.about, name='about'),
+    path('contacts/', views.contact, name='contacts'),
+    path('<slug:slug>', views.product_detail, name='product_detail'),
+    path('<slug:category_slug>/', views.category_list, name='category_list'),
 ]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

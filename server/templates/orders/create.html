@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block title %}Подтверждение заказа{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1>Оформление заказа</h1>
+    <div class="order-info">
+        <h3>Ваш заказ</h3>
+        <ul>
+            {% for item in basket %}
+            <li>
+                {{ item.qty }} x {{ item.product.title }}
+                <span>{{ item.total_price }} ₽</span>
+            </li>
+            {% endfor %}
+        </ul>
+        <p>Итого: ${{ basket.get_total_price }}</p>
+    </div>
+    <form action="." method="post" class="order-form">
+        {{ form.as_p }}
+        <p><input type="submit" value="Создать заказ"></p>
+        {% csrf_token %}
+    </form>
+</div>
+{% endblock %}
