@@ -1,5 +1,18 @@
 # SPbSTU_Django_Shop
 
+<style>
+ ul.hr {
+  margin: 0; /* Обнуляем значение отступов */
+  padding: 4px; /* Значение полей */
+ }
+ ul.hr li {
+  display: inline; /* Отображать как строчный элемент */
+  margin-right: 5px; /* Отступ слева */
+  border: 1px solid #000; /* Рамка вокруг текста */
+  padding: 3px; /* Поля вокруг текста */
+ }
+</style>
+
 <ul>
   <li><img alt="GitHub issues" src="https://img.shields.io/github/issues/duxevy/SPbSTU_Django_Shop"></li>
   <li><img alt="GitHub top language" src="https://img.shields.io/github/languages/top/duxevy/SPbSTU_Django_Shop"></li>
