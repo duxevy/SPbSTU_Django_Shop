@@ -6,4 +6,4 @@
 
 <img src="https://www.djangoproject.com/m/img/badges/djangoproject120x25.gif" border="0" alt="A Django project." title="A Django project." /></li>
 
-
+E-Commerce Shop on Django
